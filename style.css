@@ -1,0 +1,8 @@
+:root{--ink:#1a1c20;--muted:#5c5f66;--bg:#f1f0ee;--card:#fff;--navy:#1f3a5f}
+@media (prefers-color-scheme:dark){:root{--ink:#eceae6;--muted:#b4b6bb;--bg:#111215;--card:#1c1e23;--navy:#a9c4ea}}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:720px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:30px;line-height:1.2;margin:8px 0 4px}h2{font-size:21px;margin:28px 0 6px}
+a{color:var(--navy)}.muted{color:var(--muted);font-size:15px}
+section{background:var(--card);border-radius:16px;padding:4px 18px 10px;margin:14px 0}
+li{margin:4px 0}
