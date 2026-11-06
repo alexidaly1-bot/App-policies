@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Old Mate — Simple apps, built in Sydney</title>
+<meta name="description" content="Old Mate is an independent Sydney app studio making simple Android apps: MathMate, QuoteMate, LandlordMate and PlantMate.">
+<style>
+:root{--bg:#0b1114;--panel:#121b1f;--line:#22313a;--teal:#2fd4c6;--teal2:#1a8f94;--copper:#d9895a;--txt:#eef4f3;--mut:#8ea3a6}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--txt);font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:auto;padding:0 28px}
+/* NAV */
+nav{position:sticky;top:0;z-index:9;backdrop-filter:blur(14px);background:rgba(11,17,20,.7);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{background:var(--txt);color:var(--bg);font-weight:800;padding:8px 14px;border-radius:8px;letter-spacing:-.02em}
+.links{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:5px}
+.links a{padding:8px 16px;border-radius:8px;color:var(--mut);font-size:.95rem}
+.links a:hover{color:var(--txt);background:#1b272d}
+.btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--txt);padding:11px 20px;border-radius:10px;font-weight:600}
+.btn.fill{background:var(--teal);border-color:var(--teal);color:#06201f}
+.btn:hover{transform:translateY(-1px)}
+/* HERO */
+.hero{position:relative;padding:110px 0 90px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-20% -10% auto 35%;height:900px;background:radial-gradient(closest-side,rgba(47,212,198,.35),transparent 70%);filter:blur(20px)}
+.hero:after{content:"";position:absolute;right:-10%;bottom:-30%;width:700px;height:700px;background:radial-gradient(closest-side,rgba(217,137,90,.28),transparent 70%)}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.35;mask-image:radial-gradient(ellipse at 70% 40%,#000 20%,transparent 70%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.tag{display:inline-block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(47,212,198,.4);padding:6px 12px;border-radius:99px;margin-bottom:26px}
+h1{font-size:clamp(3rem,7vw,6.2rem);line-height:.95;letter-spacing:-.045em;font-weight:700}
+h1 em{font-style:normal;color:var(--teal)}
+.hero p{color:var(--mut);font-size:1.15rem;max-width:520px;margin:28px 0 36px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+/* phones */
+.phones{position:relative;height:540px}
+.phone{position:absolute;width:230px;height:470px;border-radius:34px;background:#05090b;border:6px solid #1c262b;padding:14px;box-shadow:0 40px 80px rgba(0,0,0,.6)}
+.phone.a{right:150px;top:40px;transform:rotate(-7deg)}
+.phone.b{right:0;top:0;transform:rotate(5deg);background:linear-gradient(160deg,#3a2419,#1a110c)}
+.scr{height:100%;border-radius:22px;background:linear-gradient(170deg,#0f2a31,#0a1418);padding:18px 14px;display:flex;flex-direction:column;justify-content:flex-end}
+.b .scr{background:linear-gradient(170deg,#7a4a33,#3a2419)}
+.sum{text-align:right;color:var(--mut);font-size:.85rem}.ans{text-align:right;font-size:2.4rem;font-weight:300;margin-bottom:14px}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.keys span{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:.9rem}
+.keys span.op{border:1.5px solid var(--teal);background:none;color:var(--teal)}
+.b .keys span.op{border-color:var(--copper);color:var(--copper)}
+.keys span.eq{background:var(--teal);color:#05201f}
+.b .keys span.eq{background:var(--copper);color:#2a160c}
+/* quote strip */
+.strip{background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:40px;display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:center;margin-top:-40px;position:relative;z-index:3}
+.strip h3{font-size:2.6rem;letter-spacing:-.03em;font-weight:600}
+.strip small{color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center}
+.stat b{display:block;font-size:1.8rem;color:var(--teal)}
+.stat span{color:var(--mut);font-size:.85rem}
+/* sections */
+section{padding:120px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:50px;flex-wrap:wrap}
+h2{font-size:clamp(2.4rem,5vw,4.4rem);letter-spacing:-.04em;line-height:1}
+.head p{color:var(--mut);max-width:380px}
+/* apps */
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.app{position:relative;border-radius:22px;padding:28px;min-height:360px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border:1px solid var(--line);transition:.25s}
+.app:hover{transform:translateY(-6px)}
+.app .n{font-size:.8rem;color:var(--mut);letter-spacing:.14em}
+.app h3{font-size:1.9rem;letter-spacing:-.03em;margin-bottom:8px}
+.app p{color:rgba(238,244,243,.75);font-size:.95rem}
+.app .ico{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-size:1.7rem;background:rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.c1{background:linear-gradient(160deg,#145a63,#0b1f24)}
+.c2{background:linear-gradient(160deg,#7a4a33,#24150e)}
+.c3{background:linear-gradient(160deg,#21c7c0,#2a6fd6)}
+.c4{background:linear-gradient(160deg,#2a3640,#0f1519)}
+.pill{display:inline-block;font-size:.72rem;padding:4px 10px;border-radius:99px;background:rgba(0,0,0,.35);margin-top:14px}
+/* split about */
+.split{display:grid;grid-template-columns:1fr 1fr;border-radius:28px;overflow:hidden;border:1px solid var(--line)}
+.split .l{background:linear-gradient(135deg,#7aa6b8 0%,#c9604f 45%,#8e2b3f 100%);padding:60px;display:flex;flex-direction:column;justify-content:flex-end;min-height:520px}
+.split .l h2{color:#fff}
+.split .l p{color:rgba(255,255,255,.88);margin-top:20px;max-width:420px}
+.split .r{background:#000;padding:50px;display:flex;flex-direction:column;justify-content:space-between}
+.big{font-size:5rem;font-weight:700;letter-spacing:-.05em;line-height:1}
+.big small{font-size:1.2rem;color:var(--mut);display:block;font-weight:400;letter-spacing:0;margin-top:8px}
+.vals{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
+.vals div{border-top:1px solid var(--line);padding-top:16px}
+.vals b{display:block;margin-bottom:4px}
+.vals span{color:var(--mut);font-size:.92rem}
+/* contact */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:40px}
+.row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);gap:20px}
+.row:last-child{border:0}.row span{color:var(--mut)}.row b{text-align:right;font-weight:500}
+.card.cta2{background:linear-gradient(160deg,#145a63,#0b1f24);display:flex;flex-direction:column;justify-content:space-between}
+.card.cta2 h3{font-size:2.3rem;letter-spacing:-.03em;line-height:1.05}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--mut);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a:hover{color:var(--txt)}
+@media(max-width:960px){.hero .wrap,.strip,.split,.contact{grid-template-columns:1fr}.phones{height:480px}.apps{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.links{display:none}}
+@media(max-width:560px){.apps{grid-template-columns:1fr}.phone.a{right:110px}.phone{width:200px;height:410px}.split .l,.split .r,.card{padding:32px}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#" class="logo">Old Mate</a>
+  <div class="links"><a href="#apps">Apps</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://alexidaly1-bot.github.io/App-policies/">Privacy</a></div>
+  <a href="#contact" class="btn">Get in touch →</a>
+</div></nav>
+
+<header class="hero"><div class="grid-bg"></div><div class="wrap">
+  <div>
+    <span class="tag">Independent app studio · Sydney</span>
+    <h1>Simple apps.<br>Fair prices.<br><em>No fuss.</em></h1>
+    <p>Old Mate builds small, focused Android apps for tradies, landlords, makers and everyday Aussies. Free to start, light on ads, and your data stays on your phone.</p>
+    <div class="cta"><a href="#apps" class="btn fill">See our apps →</a><a href="#about" class="btn">About us</a></div>
+  </div>
+  <div class="phones">
+    <div class="phone a"><div class="scr"><div class="sum">85 × 3 + 24</div><div class="ans">279</div>
+      <div class="keys"><span>7</span><span>8</span><span>9</span><span>4</span><span>5</span><span>6</span><span class="op">×</span><span class="op">−</span><span class="eq">=</span></div></div></div>
+    <div class="phone b"><div class="scr"><div class="sum">72 in → cm</div><div class="ans">182.88</div>
+      <div class="keys"><span>1</span><span>2</span><span>3</span><span>0</span><span>.</span><span>±</span><span class="op">÷</span><span class="op">+</span><span class="eq">=</span></div></div></div>
+  </div>
+</div></header>
+
+<div class="wrap"><div class="strip">
+  <div><h3>“Built by a maker, for makers.”</h3><small>Alex Daly — Founder, Old Mate</small></div>
+  <div class="stats">
+    <div class="stat"><b>4</b><span>Apps in progress</span></div>
+    <div class="stat"><b>0</b><span>Accounts needed</span></div>
+    <div class="stat"><b>100%</b><span>Australian made</span></div>
+    <div class="stat"><b>$0</b><span>To get started</span></div>
+  </div>
+</div></div>
+
+<section id="apps"><div class="wrap">
+  <div class="head"><h2>Our apps</h2><p>Each app does one job well. Free to use, with an optional small subscription to go ad-free or unlock extras.</p></div>
+  <div class="apps">
+    <div class="app c1"><div><div class="ico">🧮</div><span class="pill">Google Play</span></div><div><div class="n">01</div><h3>MathMate</h3><p>The side-panel calculator with unit converter, saved history and five themes.</p></div></div>
+    <div class="app c2"><div><div class="ico">📝</div><span class="pill">Closed testing</span></div><div><div class="n">02</div><h3>QuoteMate</h3><p>Quotes, bookings and deposits for solo workers. No platform fees.</p></div></div>
+    <div class="app c3"><div><div class="ico">🏠</div><span class="pill">Closed testing</span></div><div><div class="n">03</div><h3>LandlordMate</h3><p>Track rent, repairs and costs for small landlords, all in one spot.</p></div></div>
+    <div class="app c4"><div><div class="ico">🌿</div><span class="pill">Coming soon</span></div><div><div class="n">04</div><h3>PlantMate</h3><p>Watering reminders and simple care tips to keep your plants alive.</p></div></div>
+  </div>
+</div></section>
+
+<section id="about" style="padding-top:0"><div class="wrap"><div class="split">
+  <div class="l"><span class="tag" style="color:#fff;border-color:rgba(255,255,255,.5);align-self:flex-start">About</span>
+    <h2>Small studio.<br>Real tools.</h2>
+    <p>Founded in 2026 by Alex Daly, a Sydney upholsterer and seamstress who builds the apps she wished existed for her own small business. Every app is designed, built and supported from Concord, NSW.</p></div>
+  <div class="r">
+    <div class="big">2026<small>Founded in Concord, Sydney NSW</small></div>
+    <div class="vals">
+      <div><b>Fair pricing</b><span>Free to use. One small optional subscription.</span></div>
+      <div><b>Private by default</b><span>No sign-up. Data stays on your device.</span></div>
+      <div><b>Light on ads</b><span>Never while you're working.</span></div>
+      <div><b>Real support</b><span>Email a real person, not a bot.</span></div>
+    </div>
+  </div>
+</div></div></section>
+
+<section id="contact" style="padding-top:0"><div class="wrap">
+  <div class="head"><h2>Contact</h2><p>Questions, feedback or support — we usually reply within 1–2 business days.</p></div>
+  <div class="contact">
+    <div class="card">
+      <div class="row"><span>Legal name</span><b>Alex Isabel Daly</b></div>
+      <div class="row"><span>Trading as</span><b>Old Mate</b></div>
+      <div class="row"><span>ABN</span><b>71 373 747 255</b></div>
+      <div class="row"><span>D-U-N-S</span><b>74-971-4618</b></div>
+      <div class="row"><span>Address</span><b>Room 5, 39 Burwood Road<br>Concord NSW 2137, Australia</b></div>
+      <div class="row"><span>Email</span><b><a href="mailto:adu.customersupport@gmail.com">adu.customersupport@gmail.com</a></b></div>
+    </div>
+    <div class="card cta2">
+      <h3>Need help with one of our apps?</h3>
+      <a href="mailto:adu.customersupport@gmail.com" class="btn fill" style="align-self:flex-start;margin-top:30px">Email support →</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© 2026 Alex Isabel Daly trading as Old Mate · Sydney, Australia</span>
+  <span><a href="https://alexidaly1-bot.github.io/App-policies/">Privacy policy</a> · <a href="mailto:adu.customersupport@gmail.com">Support</a></span>
+</div></footer>
+</body>
+</html>
